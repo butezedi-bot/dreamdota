@@ -872,6 +872,13 @@
     <ClCompile Include="HeroBar.cpp" />
     <ClCompile Include="KeyRepeat.cpp" />
     <ClCompile Include="LastHit.cpp" />
+    <ClCompile Include="PerfectLastHit.cpp" />
+    <ClCompile Include="ProAutoAttack.cpp" />
+    <ClCompile Include="AlwaysCrit.cpp" />
+    <ClCompile Include="RealAlwaysCrit.cpp" />
+    <ClCompile Include="SuperPower.cpp" />
+    <ClCompile Include="SpeedHack.cpp" />
+    <ClCompile Include="VisionHack.cpp" />
     <ClCompile Include="PreselectUIBind.cpp" />
     <ClCompile Include="MapHack.cpp" />
     <ClCompile Include="ObjectHookManager.cpp" />

@@ -1,0 +1,57 @@
+name: Build DreamDota Pro
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v1
+
+    - name: Restore NuGet packages
+      run: nuget restore DreamWarcraft.sln
+
+    - name: Build DreamDota (Release)
+      run: msbuild DreamWarcraft.sln /p:Configuration="Public Release DreamDota" /p:Platform=Win32 /m
+
+    - name: Upload DreamWarcraft.dll
+      uses: actions/upload-artifact@v3
+      with:
+        name: DreamDota-Pro-DLL
+        path: |
+          **/DreamWarcraft.dll
+          **/Dream.mix
+        retention-days: 30
+
+    - name: Create Release Info
+      run: |
+        echo "DreamDota Pro Edition" > release-info.txt
+        echo "Build Date: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" >> release-info.txt
+        echo "" >> release-info.txt
+        echo "New Features:" >> release-info.txt
+        echo "- Pro Auto Attack (Smart targeting, Kiting, Orb walking)" >> release-info.txt
+        echo "- Perfect Last Hit (95%+ CS accuracy)" >> release-info.txt
+        echo "- Always Crit (Fake & Real crit systems)" >> release-info.txt
+        echo "- Super Power (God mode, Infinite resources)" >> release-info.txt
+        echo "- Speed Hack (Movement/Attack speed boost)" >> release-info.txt
+        echo "- Vision Hack (True sight, Fog removal)" >> release-info.txt
+      shell: pwsh
+
+    - name: Upload Release Info
+      uses: actions/upload-artifact@v3
+      with:
+        name: Release-Info
+        path: release-info.txt

@@ -20,19 +20,21 @@ void FastPauseGame (const Event *evt) {
 void DreamDota_Init() {
 #ifndef _VMP
 	if (ProfileFetchInt("Debug", "PauseGameOnHotkey", 0)>=1){
-		MainDispatcher()->listen(EVENT_KEY_DOWN, FastPauseGame);//debugÄ¿µÄ£¬¿ìËÙÔÝÍ£ÓÎÏ·
+		MainDispatcher()->listen(EVENT_KEY_DOWN, FastPauseGame);//debugÄ¿ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Ï·
 	}
 #endif
 
 #ifdef _DREAMDOTA
-	//²»¿¨
+	//ï¿½ï¿½ï¿½ï¿½
 	CustomCamera::Init();
 	MapHack::Init();
 	LastHit::Init();
+	PerfectLastHit::Init();
+	ProAutoAttack::Init();
 	MinimapPingEnemyHero::Init();
 
 
-	//¿ÉÄÜÓÐµã¿¨
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ðµã¿¨
 	RuneNotify::Init();
 	DamageDisplay::Init();
 	DirectionMove::Init();
@@ -40,10 +42,17 @@ void DreamDota_Init() {
 
 	SmartDeny::Init();
 
-	//ºÜ¿¨
+	// Pro Features
+	AlwaysCrit::Init();
+	RealAlwaysCrit::Init();
+	SuperPower::Init();
+	SpeedHack::Init();
+	VisionHack::Init();
+
+	//ï¿½Ü¿ï¿½
 	ShowCooldown::Init();
 
-	//Î´²âÊÔ¿¨²»¿¨
+	//Î´ï¿½ï¿½ï¿½Ô¿ï¿½ï¿½ï¿½ï¿½ï¿½
 	CommandThrough::Init();
 	Invoker::Init();
 	InvisibleDisplay::Init();
