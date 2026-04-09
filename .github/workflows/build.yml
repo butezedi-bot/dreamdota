@@ -14,17 +14,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Install Visual Studio 2015 Build Tools (v140)
-      run: |
-        $url = "https://aka.ms/vs/17/release/vs_buildtools.exe"
-        $installer = "$env:TEMP\vs_buildtools.exe"
-        Invoke-WebRequest -Uri $url -OutFile $installer
-        Start-Process -FilePath $installer -ArgumentList `
-          "--quiet", "--norestart", "--force", `
-          "--add", "Microsoft.VisualStudio.Component.VC.140" `
-          -Wait -NoNewWindow
-      shell: pwsh
-
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
@@ -35,7 +24,7 @@ jobs:
       run: nuget restore DreamWarcraft.sln
 
     - name: Build DreamDota (Release)
-      run: msbuild DreamWarcraft.sln /p:Configuration="Public Release DreamDota" /p:Platform=Win32 /m
+      run: msbuild DreamWarcraft.sln /p:Configuration="Public Release DreamDota" /p:Platform=Win32 /p:PlatformToolset=v143 /m
 
     - name: Upload DreamWarcraft.dll
       uses: actions/upload-artifact@v4
