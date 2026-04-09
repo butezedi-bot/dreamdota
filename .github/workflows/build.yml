@@ -14,6 +14,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Create SVN_info.h
+      run: |
+        $content = @"
+        #pragma once
+        #define SVN_REVISION 0
+        #define SVN_REVISION_STR "0"
+        #define SVN_DATE ""
+        #define SVN_TIME ""
+        "@
+        Set-Content -Path "DreamWarcraft\SVN_info.h" -Value $content
+      shell: pwsh
+
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
