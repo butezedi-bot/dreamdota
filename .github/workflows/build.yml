@@ -28,7 +28,7 @@ jobs:
       run: msbuild DreamWarcraft.sln /p:Configuration="Public Release DreamDota" /p:Platform=Win32 /m
 
     - name: Upload DreamWarcraft.dll
-      uses: actions/upload-artifact@v3
+      uses: uses: actions/upload-artifact@v4
       with:
         name: DreamDota-Pro-DLL
         path: |
