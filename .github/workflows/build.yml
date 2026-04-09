@@ -12,13 +12,13 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.1
+      uses: microsoft/setup-msbuild@v2
 
     - name: Setup NuGet
-      uses: nuget/setup-nuget@v1
+      uses: nuget/setup-nuget@v2
 
     - name: Restore NuGet packages
       run: nuget restore DreamWarcraft.sln
@@ -39,8 +39,6 @@ jobs:
       run: |
         echo "DreamDota Pro Edition" > release-info.txt
         echo "Build Date: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" >> release-info.txt
-        echo "" >> release-info.txt
-        echo "New Features:" >> release-info.txt
         echo "- Pro Auto Attack" >> release-info.txt
         echo "- Perfect Last Hit" >> release-info.txt
         echo "- Always Crit" >> release-info.txt
