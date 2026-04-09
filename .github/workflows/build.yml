@@ -1,5 +1,4 @@
 name: Build DreamDota Pro
-
 on:
   push:
     branches: [ master, main ]
@@ -28,7 +27,7 @@ jobs:
       run: msbuild DreamWarcraft.sln /p:Configuration="Public Release DreamDota" /p:Platform=Win32 /m
 
     - name: Upload DreamWarcraft.dll
-      uses: uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v4
       with:
         name: DreamDota-Pro-DLL
         path: |
@@ -42,16 +41,16 @@ jobs:
         echo "Build Date: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" >> release-info.txt
         echo "" >> release-info.txt
         echo "New Features:" >> release-info.txt
-        echo "- Pro Auto Attack (Smart targeting, Kiting, Orb walking)" >> release-info.txt
-        echo "- Perfect Last Hit (95%+ CS accuracy)" >> release-info.txt
-        echo "- Always Crit (Fake & Real crit systems)" >> release-info.txt
-        echo "- Super Power (God mode, Infinite resources)" >> release-info.txt
-        echo "- Speed Hack (Movement/Attack speed boost)" >> release-info.txt
-        echo "- Vision Hack (True sight, Fog removal)" >> release-info.txt
+        echo "- Pro Auto Attack" >> release-info.txt
+        echo "- Perfect Last Hit" >> release-info.txt
+        echo "- Always Crit" >> release-info.txt
+        echo "- Super Power" >> release-info.txt
+        echo "- Speed Hack" >> release-info.txt
+        echo "- Vision Hack" >> release-info.txt
       shell: pwsh
 
     - name: Upload Release Info
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Release-Info
         path: release-info.txt
